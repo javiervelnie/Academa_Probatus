@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="dist/css/registro.css" rel="stylesheet">
+</head>
+<body>
+    <div id="principal">
+        <div id="titulo"><h2>Registro</h2></div>
+        <div id="datos">
+
+            <div class="columna">
+                <div class="datos derecha">
+                    <p>Nombre</p><input type="text" name="nombre" required="true">
+                </div>
+                <div class="datos izquierda">
+                    <p>Apellidos</p><input type="text" name="apellidos" required="true">
+                </div>
+            </div>
+
+            <div class="columna">
+                <div class="datos derecha">
+                    <p>Usuario</p><input type="text" name="usuario" required="true">
+                </div>
+                <div class="datos izquierda">
+                    <p>NIF</p><input type="text" name="dni" required="true">
+                </div>
+            </div>
+            
+            <div class="columna">
+                <div class="datos derecha">
+                    <p>Contraseña</p><input type="password" name="password1" required="true">
+                </div>
+                <div class="datos izquierda">
+                    <p>Repita su contraseña</p><input type="password" name="password2" required="true">
+                </div>
+            </div>
+            
+            <div class="columna">
+                <div class="datos derecha">
+                    <p>Fecha de nacimiento</p><input type="date" name="fnacimiento" required="true">
+                </div>
+            </div>
+        </div>
+        <div id="btn_div">
+            <button type="submit" id="btn_cancelar">CANCELAR</button>
+            <button type="submit" id="btn_crear">CREAR</button>
+        </div>
+    </div>
+</body>
+</html>
