@@ -8,9 +8,13 @@
     <link href="dist/css/registro.css" rel="stylesheet">
 </head>
 <body>
+    <div id="cabecera">
+        <img src="img/nombreAcademia.png">
+        <img src="img/logoAcademia.png">
+    </div>
     <div id="principal">
         <div id="titulo"><h2>Registro</h2></div>
-        <div id="datos">
+        <form id="datos">
 
             <div class="columna">
                 <div class="datos derecha">
@@ -39,16 +43,14 @@
                 </div>
             </div>
             
-            <div class="columna">
-                <div class="datos derecha">
-                    <p>Fecha de nacimiento</p><input type="date" name="fnacimiento" required="true">
-                </div>
-            </div>
-        </div>
+        </form>
         <div id="btn_div">
             <button type="submit" id="btn_cancelar">CANCELAR</button>
             <button type="submit" id="btn_crear">CREAR</button>
         </div>
     </div>
+
+
+    <script src="dist/js/registro.js"></script>
 </body>
 </html>

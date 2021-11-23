@@ -43,6 +43,7 @@ a{
     padding-bottom: 10px;
     text-decoration: none;
     color:  #2c6cac;
+    width:fit-content;
 }
 
 #btn_login{
@@ -52,13 +53,17 @@ button{
     margin-top: 20px;
     width: auto;
     color: white;
-    background-color: #2c6cac;
+    background-color: #142467;
     font-size: 15px;
     padding: 15px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     border: none;
     cursor: pointer;
+}
+
+button:hover{
+    background-color: #2a3a7c;
 }
 
 a:hover{
