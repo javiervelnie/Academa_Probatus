@@ -1,0 +1,25 @@
+.material-icons.md-36 { font-size: 36px; color: white;}
+body{
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    margin: 0;
+    background-color: #142467;
+}
+
+.opcionMenu{
+    padding: 5px 30px 10px 10px;
+    text-align: center;
+    color: white;
+}
+
+#cabecera{
+    padding: 10px 20px 10px 20px;
+}
+
+.campos{
+    display: inline-block;
+    padding: 10px 30px 10px 20px;
+}
