@@ -1,3 +1,6 @@
+<?php
+
+echo '
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,20 +15,11 @@
 </head>
 
 <body>
-    <nav>
-        <div class="opcionMenu">
-            <div class="divIconos"><span class="material-icons md-36">add</span></div>
-            <div class="divOpcion"><a>AÑADIR TAREA</a></div>
-        </div>
-        <div class="opcionMenu">
-            <div class="divIconos"><span class="material-icons md-36">add</span></div>
-            <div class="divOpcion"><a>MIS TAREAS</a></div>
-        </div>
-        <div class="opcionMenu">
-            <div class="divIconos"><span class="material-icons md-36">add</span></div>
-            <div class="divOpcion"><a>CORREGIR TAREAS</a></div>
-        </div>
-    </nav>
+';
+
+include 'dist/php/menu.php';
+
+echo '
     <main>
         <div id="cabecera">
             <h3>Nueva tarea</h3>
@@ -68,3 +62,4 @@
 </body>
 
 </html>
+';
