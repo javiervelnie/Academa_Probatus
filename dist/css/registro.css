@@ -28,6 +28,7 @@
 
 .columna{
     display: block;
+    margin-bottom: 30px;
 }
 
 .datos{
@@ -35,7 +36,7 @@
     width: 45%;
 }
 
-p{
+label{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -46,7 +47,6 @@ p{
 
 input{
     display: block;
-    margin-bottom: 20px;
     padding: 5px;
     font-size: 15px;
     width: 100%;

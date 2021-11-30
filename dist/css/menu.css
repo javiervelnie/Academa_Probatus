@@ -1,0 +1,10 @@
+nav{
+    display: flex;
+    margin: 0;
+    background-color: #142467;
+}
+.opcionMenu{
+    padding: 5px 30px 10px 10px;
+    text-align: center;
+    color: white;
+}

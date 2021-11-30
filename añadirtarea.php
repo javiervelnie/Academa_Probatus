@@ -9,7 +9,7 @@ echo '
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir tareas</title>
-    <link href="dist/css/index.css" rel="stylesheet">
+    <link href="dist/css/añadirtarea.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
@@ -23,7 +23,6 @@ echo '
     <main>
         <div id="cabecera">
             <h3>Nueva tarea</h3>
-            <hr>
         </div>
         <form>
             <div class="campos">

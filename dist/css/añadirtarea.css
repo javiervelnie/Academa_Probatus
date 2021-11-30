@@ -1,0 +1,18 @@
+.material-icons.md-36 { font-size: 25px; color: white;}
+body{
+    margin: 0;
+}
+main{
+    margin: 20px 30px 20px 30px;
+}
+
+#cabecera{
+    border-bottom: 1px solid black  ;
+}
+form{
+    padding-top: 20px;
+}
+.campos{
+    display: inline-block;
+    padding-right: 10%;
+}
