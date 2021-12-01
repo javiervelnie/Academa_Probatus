@@ -1,12 +1,12 @@
 /* TABLA ALUMNOS */
 CREATE TABLE `academia`.`alumno` (
+  `id` INT(4) PRIMARY KEY AUTO_INCREMENT,
   `dni` VARCHAR(9) NOT NULL,
   `nombre` VARCHAR(255) NOT NULL,
   `apellidos` VARCHAR(255) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password1` VARCHAR(20) NOT NULL,
   `password2` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`dni`),
   UNIQUE INDEX `dni_UNIQUE` (`dni` ASC) VISIBLE)
 COMMENT = 'Tabla para los usuarios alumnos';
 
@@ -16,13 +16,13 @@ INSERT INTO `academia`.`alumno` (`dni`, `nombre`, `apellidos`, `email`, `passwor
 
 /* TABLA PROFESORES */
 CREATE TABLE `academia`.`profesor` (
+  `id` INT(4) PRIMARY KEY AUTO_INCREMENT,
   `dni` VARCHAR(9) NOT NULL,
   `nombre` VARCHAR(255) NOT NULL,
   `apellidos` VARCHAR(255) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password1` VARCHAR(20) NOT NULL,
   `password2` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`dni`),
   UNIQUE INDEX `dni_UNIQUE` (`dni` ASC) VISIBLE)
 COMMENT = 'Tabla para los usuarios profesores';
 
@@ -33,22 +33,17 @@ INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `passw
 /* TABLA TAREAS */
 CREATE TABLE `academia`.`tareas` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `asignatura` VARCHAR(255) NOT NULL,
+  `asignatura` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(255) NOT NULL,
-  `estado` VARCHAR(255) NOT NULL,
-  `useralumno` VARCHAR(9) NULL,
-  `archivo` VARCHAR(255) NULL,
+  `idalumno` INT NOT NULL,
+  `archivo` VARCHAR(100) NULL,
   `fechacreacion` DATE NOT NULL,
   `fechacorreccion` DATE NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `tarea_dni_alumno_idx` (`useralumno` ASC) VISIBLE,
-  CONSTRAINT `tarea_dni_alumno`
-    FOREIGN KEY (`useralumno`)
-    REFERENCES `academia`.`alumno` (`dni`)
+  INDEX `FOREIGN_ID_ALUMNO_idx` (`idalumno` ASC) VISIBLE,
+  CONSTRAINT `FOREIGN_ID_ALUMNO`
+    FOREIGN KEY (`idalumno`)
+    REFERENCES `academia`.`alumno` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);
-
-
-
-
