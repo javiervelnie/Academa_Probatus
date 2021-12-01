@@ -1,41 +1,12 @@
 <?php
 
-/*
-if (isset($_POST['crear'])) {
-
-    //VARIABLES ENVIADAS POR EL FORMULARIO
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $usuario = $_POST['usuario'];
-    $dni = $_POST['dni'];
-    $password1 = $_POST['password1'];
-    $password2 = $_POST['password2'];
-
-    //INSERTAR EN LA TABLA
-    $sql = "insert into `academia`.`alumno` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) 
-    values('$nombre','$apellidos','$usuario','$dni','$password1','$password2')";
-
-    $sql = $connect->prepare($sql);
-
-    $sql->bindParam(':dni', $dni, PDO::PARAM_STR, 25);
-    $sql->bindParam(':nombre', $nombre, PDO::PARAM_STR, 25);
-    $sql->bindParam(':apellidos', $apellidos, PDO::PARAM_STR, 25);
-    $sql->bindParam(':usuario', $usuario, PDO::PARAM_STR, 25);
-    $sql->bindParam(':password1', $password1, PDO::PARAM_STR, 25);
-    $sql->bindParam(':password2', $password2, PDO::PARAM_STR, 25);
-
-    $sql->execute();
-}
-*/
-
 require_once "dist/php/databaseconect.php";
-
-
-
 
     if (isset($_POST['btn_crear'])) {
 
         $consulta = $conn->prepare("INSERT INTO alumno(dni,nombre,apellidos,email,password1,password2) VALUES (:dni,:nombre,:apellidos,:email,:password1,:password2)");
+
+        $msg_error=[];
 
         /* RECOGER VARIABLES DEL FORMULARIO */
         $nombre = $_POST['nombre'];
@@ -73,6 +44,32 @@ require_once "dist/php/databaseconect.php";
                 echo "Error al añadir.";
             }
         } else {
+            if (!$nombre_check) {
+                array_push($msg_error, "Nombre no valido.\n");
+            }
+            if (!$apellidos_check) {
+                array_push($msg_error, "Nombre no valido.\n");
+                //$msg_error += "Apellidos no validos.\n";
+            }
+            if (!$email_check) {
+                array_push($msg_error, "Nombre no valido.\n");
+                //$msg_error += "Email no valido.\n";
+            }
+            if (!$dni_check) {
+                array_push($msg_error, "Nombre no valido.\n");
+                //$msg_error += "NIF no valido.\n";
+            }
+            if (!$password_check) {
+                array_push($msg_error, "Nombre no valido.\n");
+                //$msg_error += "Contraseña no valida. Min una mayuscula y minuscula. Puede contener simbolos.\n";
+            }
+            if (!$password_equal) {
+                array_push($msg_error, "Nombre no valido.\n");
+                //$msg_error += "Las contraseñas no son iguales.\n";
+            }
+            echo "<script>alert($msg_error)</script>";
+        }
+    }
 
 ?>
 
@@ -101,58 +98,27 @@ require_once "dist/php/databaseconect.php";
             <div class="columna">
                 <div class="datos derecha">
                     <label>Nombre</label><input type="text" name="nombre" required="true">
-                    <?php
-                        if (!$nombre_check) {
-                            echo '<div class="errores">Error en el nombre</div>';
-                        }
-                    ?>
                 </div>
                 <div class="datos izquierda">
                     <label>Apellidos</label><input type="text" name="apellidos" required="true">
-                    <?php
-                        if (!$apellidos_check) {
-                            echo '<div class="errores">Error en los apellidos</div>';
-                        }
-                    ?>
                 </div>
             </div>
 
             <div class="columna">
                 <div class="datos derecha">
                     <label>Email</label><input type="text" name="email" required="true">
-                    <?php
-                        if (!$email_check) {
-                            echo '<div class="errores">Error en el email</div>';
-                        }
-                    ?>
                 </div>
                 <div class="datos izquierda">
                     <label>NIF</label><input type="text" name="dni" required="true">
-                    <?php
-                        if (!$dni_check) {
-                            echo '<div class="errores">Error en el dni</div>';
-                        }
-                    ?>
                 </div>
             </div>
 
             <div class="columna">
                 <div class="datos derecha">
                     <label>Contraseña</label><input type="password" name="password1" required="true">
-                    <?php
-                        if (!$password_check) {
-
-                            echo '<div class="errores"><p>8-16 caracteres. Min una min y mayus.</p> <p>Puede contener simbolos.</p></div>';
-                        }
-                    ?>
                 </div>
                 <div class="datos izquierda">
                     <label>Repita su contraseña</label><input type="password" name="password2" required="true">
-                    <?php
-                        if (!$password_equal) {
-                            echo '<div class="errores">La contraseña no coincide.</div>';
-                        }
-                    ?>
                 </div>
             </div>
 
@@ -169,8 +135,3 @@ require_once "dist/php/databaseconect.php";
 </body>
 
 </html>
-
-<?php
-}
-}
-?>
