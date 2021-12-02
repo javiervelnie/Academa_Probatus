@@ -2,13 +2,14 @@
 const cancelButton = document.querySelector("#btn_cancelar");
 cancelButton.addEventListener("click", redirigirToLogin);
 
+document.querySelector("body").addEventListener("load", corregirErrorVisual());
+
 function redirigirToLogin() {
     window.location.href = "login.php";
 }
 
 function corregirErrorVisual() {
     var parrafos = document.querySelectorAll("p");
-    console.log("🚀 ~ file: registro.js ~ line 11 ~ corregirErrorVisual ~ parrafos", parrafos)
 
     parrafos.forEach(element => {
         if (element.textContent == '') {
@@ -18,6 +19,3 @@ function corregirErrorVisual() {
         }
     });
 }
-
-
-document.querySelector("body").addEventListener("load", corregirErrorVisual());

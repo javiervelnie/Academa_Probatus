@@ -47,7 +47,12 @@ if (isset($_POST['btn_crear'])) {
                         alert("Usuario creado con exito");
                     </script>';
         } else {
-            echo "Error al añadir.";
+            
+            echo '
+            <script type="text/javascript">
+                        window.location.href="registro.php";
+                    </script>
+            Error al añadir.';
         }
     } else {
         if (!$nombre_check) {
