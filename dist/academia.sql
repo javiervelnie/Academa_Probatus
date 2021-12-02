@@ -1,3 +1,7 @@
+/*CREAR ESQUEMA*/
+CREATE SCHEMA `academia` ;
+
+
 /* TABLA ALUMNOS */
 CREATE TABLE `academia`.`alumno` (
   `id` INT(4) PRIMARY KEY AUTO_INCREMENT,
