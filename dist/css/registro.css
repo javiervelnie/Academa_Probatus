@@ -55,6 +55,7 @@ input{
 }
 
 .derecha{
+    margin-top: 0;
     padding-right: 20px;
 }
 
@@ -90,4 +91,16 @@ input{
     font-weight: bold;
     border: 1px solid rgb(156, 156, 156);
     cursor: pointer;
+}
+
+.errores{
+    padding: 10px 0px 10px 0px;
+}
+.errores p{
+    margin: 0;
+    color: red;
+}
+.noHayErrores{
+    visibility: hidden;
+    color: white;
 }

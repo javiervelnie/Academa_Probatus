@@ -63,7 +63,7 @@ if (isset($_POST['btn_crear'])) {
             $msg_error_dni = "NIF no valido.\n";
         }
         if (!$password_check) {
-            $msg_error_password_check = "Contraseña no valida. Min una mayuscula y minuscula. Puede contener simbolos.\n";
+            $msg_error_password_check = "Mayus, Min y Num\n";
         }
         if (!$password_equal) {
             $msg_error_password_equal = "Las contraseñas no son iguales.\n";
@@ -98,33 +98,33 @@ if (isset($_POST['btn_crear'])) {
             <div class="columna">
                 <div class="datos derecha">
                     <label>Nombre</label><input type="text" name="nombre" required="true">
-                    <?php echo "$msg_error_nombre" ?>
+                    <div class="errores"><p><?php echo "$msg_error_nombre" ?></p></div>
                 </div>
                 <div class="datos izquierda">
                     <label>Apellidos</label><input type="text" name="apellidos" required="true">
-                    <?php echo "$msg_error_apellidos" ?>
+                    <div class="errores"><p><?php echo "$msg_error_apellidos" ?></p></div>
                 </div>
             </div>
 
             <div class="columna">
                 <div class="datos derecha">
                     <label>Email</label><input type="text" name="email" required="true">
-                    <?php echo "$msg_error_email" ?>
+                    <div class="errores"><p><?php echo "$msg_error_email" ?></p></div>
                 </div>
                 <div class="datos izquierda">
                     <label>NIF</label><input type="text" name="dni" required="true">
-                    <?php echo "$msg_error_dni" ?>
+                    <div class="errores"><p><?php echo "$msg_error_dni" ?></p></div>
                 </div>
             </div>
 
             <div class="columna">
                 <div class="datos derecha">
-                    <label>Contraseña</label><input type="password" name="password1" required="true">
-                    <?php echo "$msg_error_password_check" ?>
+                    <label>Contraseña</label><input type="password" name="password1" placeholder="Entre 8-16 caracteres" required="true">
+                    <div class="errores"><p><?php echo "$msg_error_password_check" ?></p></div>
                 </div>
                 <div class="datos izquierda">
                     <label>Repita su contraseña</label><input type="password" name="password2" required="true">
-                    <?php echo "$msg_error_password_equal" ?>
+                    <div class="errores"><p><?php echo "$msg_error_password_equal" ?></p></div>
                 </div>
             </div>
 
