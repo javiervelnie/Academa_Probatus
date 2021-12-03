@@ -1,6 +1,41 @@
 <?php
 
-echo '
+include 'dist/php/databaseconect.php';
+
+$fechacorreccion = null;
+
+/* Obtengo fecha actual para añadirla a la tabla */
+$stringDate = new DateTime();
+$fechacreacion = $stringDate->format(DATE_ATOM);
+$fechacreacion = substr($fechacreacion,0,strpos($fechacreacion, "T"));
+
+/* NECESITO OBTENER EL ID DE LA PERSONA QUE ESTA CONECTADA EN LA SESION */
+$idalumno=1;
+
+if (isset($_POST['btn_añadir'])) {
+
+    $asignatura= $_POST['asignatura'];
+    $archivo= $_POST['archivo'];
+    $descripcion= $_POST['descripcion'];
+    
+    $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
+    $consulta->bindParam(':asignatura', $asignatura);
+    $consulta->bindParam(':descripcion', $descripcion);
+    $consulta->bindParam(':idalumno', $idalumno);
+    $consulta->bindParam(':archivo', $archivo);
+    $consulta->bindParam(':fechacreacion', $fechacreacion);
+    $consulta->bindParam(':fechacorreccion', $fechacorreccion);
+    $consulta->execute();
+
+    if ($consulta->execute()) {
+
+        echo 'Funciono';
+
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,17 +44,13 @@ echo '
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir tareas</title>
-    <link href="dist/css/añadirtarea.css" rel="stylesheet">
+    <link href="dist/css/addtarea.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
-';
-
-include 'dist/php/menu.php';
-
-echo '
+    <?php include 'dist/php/menu.php'; ?>
     <main>
         <div id="cabecera">
             <h3>Nueva tarea</h3>
@@ -27,9 +58,10 @@ echo '
         <form>
             <div class="campos">
                 <div>
-                    <div><label aria-required="true">Asignatura</label></div>
+                    <div><label>Asignatura</label></div>
                     <div>
-                        <select id="asignaturas" name="asignaturas">
+                        <select id="asignatura" name="asignatura" required>
+                            <option selected="true" disabled="disabled">--Seleccione usa asignatura--</option>
                             <option value="1">Biologia</option>
                             <option value="2">Fisica y Quimica</option>
                             <option value="3">Frances</option>
@@ -46,19 +78,25 @@ echo '
                 <div>
                     <div>
                         <div><label>Tarea</label></div>
-                        <div><input type="file"></div>
+                        <div><input type="file" name="archivo"></div>
                     </div>
                 </div>
             </div>
 
             <div class="campos">
-                <div><label aria-required="true">Decripcion</label></div>
-                <div><textarea name="descripcion"></textarea></div>
+                <div><label>Decripcion</label></div>
+                <div><textarea required name="descripcion"></textarea></div>
             </div>
-            
+
+            <div id="btn_div">
+                <button name="btn_cancelar" type="submit" id="btn_cancelar">CANCELAR</button>
+                <button name="" type="submit" id="btn_añadir">AÑADIR</button>
+            </div>
+
         </form>
     </main>
+
+    <script src="dist/js/addtarea.js"></script>
 </body>
 
 </html>
-';
