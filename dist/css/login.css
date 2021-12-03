@@ -69,3 +69,6 @@ button:hover{
 a:hover{
     text-decoration: underline;
 }
+.msg_error{
+    color:red;
+}

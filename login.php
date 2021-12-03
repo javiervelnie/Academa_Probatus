@@ -1,36 +1,39 @@
-<?php 
+<?php
 
 require_once "dist/php/databaseconect.php";
 
 $msg_error_login = "";
 
-if (isset($_POST['btn_entrar'])) {
+if (isset($_POST['login'])) {
 
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    echo'<script>console.log("LLego aqui");</script>';
-    if ($email != "" && $password != "") {
+    $password1 = $_POST['password1'];
 
-        $consulta = $conn->prepare("SELECT * FROM academia.alumno WHERE email='$email'");
-        $consulta->bindParam('email', $email);
+    if ($email != "" || $password1 != "") {
 
-        if ($consulta->execute()) {
-            echo'<script>console.log("LLego aqui");</script>';
-            $consulta = $conn->prepare("SELECT * FROM academia.alumno WHERE email='$email' AND password = '$password'");
-            $consulta->bindParam('email', $email);
-            $consulta->bindParam('password', $password);
+        $consulta = $conn->prepare("SELECT * FROM academia.alumno WHERE email=:email");
+        $consulta->bindParam(':email', $email);
+        $consulta->execute();
 
-            if ($consulta->execute()) {
-                header('Location:añadirtarea.php');
+        $existe = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        if ($existe) {
+            $sql = $conn->prepare("SELECT * FROM academia.alumno WHERE email=:email AND password1=:password1");
+            $sql->bindParam('email', $email);
+            $sql->bindParam('password1', $password1);
+            $sql->execute();
+
+            $existe = $sql->fetch(PDO::FETCH_ASSOC);
+
+            if ($existe) {
+                header('Location:addtarea.php');
             } else {
-                $msg_error_login = "<div style='text-align:center;'><h4 style='color:red; align:center;'>Email o contraseña incorrecta</h4><div>";
+                $msg_error_login = "<div style='text-align:center;'><h4 style='color:red; align:center; font-family: Arial, Helvetica, sans-serif;'>Email o contraseña incorrectos</h4></div>";
             }
         } else {
-            $msg_error_login = "<div style='text-align:center;'><h4 style='color:red; align:center;'>Email o contraseña incorrecta</h4><div>";
+            $msg_error_login = "<div style='text-align:center;'><h4 style='color:red; align:center; font-family: Arial, Helvetica, sans-serif;'>Email o contraseña incorrectos</h4></div>";
         }
-    }  else {
-        $msg_error_login = "<div style='text-align:center;'><h4 style='color:red; align:center;'>Email o contraseña incorrecta</h4><div>";
-    }
+    } 
 }
 ?>
 
@@ -47,20 +50,20 @@ if (isset($_POST['btn_entrar'])) {
 </head>
 
 <body>
-    <div id="principal">
+    <form id="principal" action="" method="POST" name="formulario">
         <div id="titulo"><img src="img/nombreAcademia.png"><img src="img/logoAcademia.png"></div>
         <div id="datos">
             <p>Email</p><input type="text" name="email" required="true">
-            <p>Contraseña</p><input type="password" name="password" required="true">
+            <p>Contraseña</p><input type="password" name="password1" required="true">
         </div>
         <div id="registerandforgotkey">
             <a href="registro.php">Registrate aqui</a>
         </div>
         <?php echo $msg_error_login ?>
         <div id="btn_login">
-            <button type="submit" id="btn_entrar" name="btn_entrar">ENTRAR</button>
+            <button type="submit" id="btn_entrar" name="login">ENTRAR</button>
         </div>
-    </div>
+    </form>
 </body>
 
 </html>
