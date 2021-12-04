@@ -1,18 +1,32 @@
 <?php
     echo '
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="dist/css/menu.css" rel="stylesheet">
     <nav>
+
         <div class="opcionMenu">
-            <div class="divIconos"><span class="material-icons md-36">add</span></div>
-            <div class="divOpcion"><a href="../../añadirtarea.php">AÑADIR TAREA</a></div>
+            <a href="addtarea.php">
+                <div class="divIconos"><span class="material-icons">add</span></div>
+                AÑADIR TAREA
+            </a>
+            <a href="mostrartareas.php">
+                <div class="divIconos"><span class="material-icons">menu_book</span></div>
+                MIS TAREAS
+            </a>
+            <a href="">
+                <div class="divIconos"><span class="material-icons">edit</span></div>
+                CORREGIR TAREAS
+            </a>
         </div>
-        <div class="opcionMenu">
-            <div class="divIconos"><span class="material-icons md-36">menu_book</span></div>
-            <div class="divOpcion"><a>MIS TAREAS</a></div>
-        </div>
-        <div class="opcionMenu">
-            <div class="divIconos"><span class="material-icons md-36">edit</span></div>
-            <div class="divOpcion"><a>CORREGIR TAREAS</a></div>
+
+        <div id="divLogout">
+            <a href="addtarea.php">
+                <div class="logo"><img src="img/nombreAcademia.png" alt="Imagen con el nombre de la academia"></div>
+            </a>
+            <a href="login.php">
+                <div class="btn_logout"><span class="material-icons">logout</span></div>
+            </a>
+
         </div>
     </nav>
     '
