@@ -26,7 +26,11 @@ if (isset($_POST['login'])) {
             $existe = $sql->fetch(PDO::FETCH_ASSOC);
 
             if ($existe) {
-                $_SESSION['usuario'] = $email;
+                $sth = $conn->prepare("SELECT id FROM academia.alumno WHERE email=:email");
+                $sth->execute(array(':email' => $email));
+                $file = $sth->fetch();
+                $idConsulta = $file['id'];
+                $_SESSION['id'] = $idConsulta;
                 header('Location:addtarea.php');
             } else {
                 $msg_error_login = "<div style='text-align:center;'><h4 style='color:red; align:center; font-family: Arial, Helvetica, sans-serif;'>Email o contraseña incorrectos</h4></div>";
@@ -34,7 +38,7 @@ if (isset($_POST['login'])) {
         } else {
             $msg_error_login = "<div style='text-align:center;'><h4 style='color:red; align:center; font-family: Arial, Helvetica, sans-serif;'>Email o contraseña incorrectos</h4></div>";
         }
-    } 
+    }
 }
 ?>
 

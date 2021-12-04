@@ -2,35 +2,41 @@
 
 include 'dist/php/databaseconect.php';
 
-$fechacorreccion = null;
+date_default_timezone_set('Europe/Madrid');
+$fechacreacion = date("Y-m-d");
 
-/* Obtengo fecha actual para añadirla a la tabla */
-$stringDate = new DateTime();
-$fechacreacion = $stringDate->format(DATE_ATOM);
-$fechacreacion = substr($fechacreacion,0,strpos($fechacreacion, "T"));
-
-/* NECESITO OBTENER EL ID DE LA PERSONA QUE ESTA CONECTADA EN LA SESION */
-$idalumno=1;
 
 if (isset($_POST['btn_añadir'])) {
 
-    $asignatura= $_POST['asignatura'];
-    $archivo= $_POST['archivo'];
-    $descripcion= $_POST['descripcion'];
-    
+    //$fechacorreccion = null;
+
+
+
+    $asignatura = $_POST['asignatura'];
+    $archivo = $_POST['archivo'];
+    $descripcion = $_POST['descripcion'];
+
+    if ($archivo == "") {
+        $archivo = null;
+    }
+
     $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
     $consulta->bindParam(':asignatura', $asignatura);
     $consulta->bindParam(':descripcion', $descripcion);
-    $consulta->bindParam(':idalumno', $idalumno);
+    $consulta->bindParam(':idalumno', intval($_SESSION['id']));
     $consulta->bindParam(':archivo', $archivo);
     $consulta->bindParam(':fechacreacion', $fechacreacion);
-    $consulta->bindParam(':fechacorreccion', $fechacorreccion);
-    $consulta->execute();
+    $consulta->bindParam(':fechacorreccion', null);
 
     if ($consulta->execute()) {
 
-        echo 'Funciono';
-
+        echo '<script>console.log("Funciono");
+        alert("Tarea añadida.");
+        </script>';
+    } else {
+        echo '<script>console.log("Funciono");
+        alert("Tarea no añadida.");
+        </script>';
     }
 }
 
@@ -52,25 +58,26 @@ if (isset($_POST['btn_añadir'])) {
 <body>
     <?php include 'dist/php/menu.php'; ?>
     <main>
+        <?php print_r($_SESSION['id']) ?>
         <div id="cabecera">
             <h3>Nueva tarea</h3>
         </div>
-        <form>
+        <form id="datos" action="" method="POST" name="formulario">
             <div class="campos">
                 <div>
                     <div><label>Asignatura</label></div>
                     <div>
                         <select id="asignatura" name="asignatura" required>
                             <option selected="true" disabled="disabled">--Seleccione usa asignatura--</option>
-                            <option value="1">Biologia</option>
-                            <option value="2">Fisica y Quimica</option>
-                            <option value="3">Frances</option>
-                            <option value="4">Lengua</option>
-                            <option value="5">Historia</option>
-                            <option value="6">Informatica</option>
-                            <option value="7">Ingles</option>
-                            <option value="8">Matematicas</option>
-                            <option value="9">Tecnologia</option>
+                            <option value="Biologia">Biologia</option>
+                            <option value="Fisica y Quimica">Fisica y Quimica</option>
+                            <option value="Frances">Frances</option>
+                            <option value="Lengua">Lengua</option>
+                            <option value="Historia">Historia</option>
+                            <option value="Informatica">Informatica</option>
+                            <option value="Ingles">Ingles</option>
+                            <option value="Matematicas">Matematicas</option>
+                            <option value="Tecnologia">Tecnologia</option>
                         </select>
                     </div>
                 </div>

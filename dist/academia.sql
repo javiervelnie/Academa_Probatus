@@ -5,10 +5,10 @@ CREATE SCHEMA `academia` ;
 /* TABLA ALUMNOS */
 CREATE TABLE `academia`.`alumno` (
   `id` INT(4) PRIMARY KEY AUTO_INCREMENT,
-  `dni` VARCHAR(9) NOT NULL,
+  `dni` VARCHAR(9) NOT NULL UNIQUE,
   `nombre` VARCHAR(255) NOT NULL,
   `apellidos` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL UNIQUE,
   `password1` VARCHAR(20) NOT NULL,
   `password2` VARCHAR(20) NOT NULL,
   UNIQUE INDEX `dni_UNIQUE` (`dni` ASC) VISIBLE)
@@ -21,10 +21,10 @@ INSERT INTO `academia`.`alumno` (`dni`, `nombre`, `apellidos`, `email`, `passwor
 /* TABLA PROFESORES */
 CREATE TABLE `academia`.`profesor` (
   `id` INT(4) PRIMARY KEY AUTO_INCREMENT,
-  `dni` VARCHAR(9) NOT NULL,
+  `dni` VARCHAR(9) NOT NULL UNIQUE,
   `nombre` VARCHAR(255) NOT NULL,
   `apellidos` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL UNIQUE,
   `password1` VARCHAR(20) NOT NULL,
   `password2` VARCHAR(20) NOT NULL,
   UNIQUE INDEX `dni_UNIQUE` (`dni` ASC) VISIBLE)
@@ -36,13 +36,13 @@ INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `passw
 
 /* TABLA TAREAS */
 CREATE TABLE `academia`.`tareas` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT AUTO_INCREMENT,
   `asignatura` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(255) NOT NULL,
   `idalumno` INT NOT NULL,
   `archivo` VARCHAR(100) NULL,
-  `fechacreacion` DATE NOT NULL,
-  `fechacorreccion` DATE NULL,
+  `fechacreacion` VARCHAR(100) NOT NULL,
+  `fechacorreccion` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   INDEX `FOREIGN_ID_ALUMNO_idx` (`idalumno` ASC) VISIBLE,
