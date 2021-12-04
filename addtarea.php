@@ -5,16 +5,17 @@ include 'dist/php/databaseconect.php';
 date_default_timezone_set('Europe/Madrid');
 $fechacreacion = date("Y-m-d");
 
+$msg_error = "";
 
 if (isset($_POST['btn_añadir'])) {
 
-    //$fechacorreccion = null;
+    $fechacorreccion = null;
 
-
-
+    /* VARIABLES DEL FORMULARIO */
     $asignatura = $_POST['asignatura'];
     $archivo = $_POST['archivo'];
     $descripcion = $_POST['descripcion'];
+    $idAlumno = $_SESSION['id'];
 
     if ($archivo == "") {
         $archivo = null;
@@ -23,20 +24,16 @@ if (isset($_POST['btn_añadir'])) {
     $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
     $consulta->bindParam(':asignatura', $asignatura);
     $consulta->bindParam(':descripcion', $descripcion);
-    $consulta->bindParam(':idalumno', intval($_SESSION['id']));
+    $consulta->bindParam(':idalumno', $idAlumno);
     $consulta->bindParam(':archivo', $archivo);
     $consulta->bindParam(':fechacreacion', $fechacreacion);
-    $consulta->bindParam(':fechacorreccion', null);
+    $consulta->bindParam(':fechacorreccion', $fechacorreccion);
 
-    if ($consulta->execute()) {
+    if ($consulta->execute() && $asignatura != "escoge") {
 
-        echo '<script>console.log("Funciono");
-        alert("Tarea añadida.");
-        </script>';
+        echo '<script>alert("Tarea añadida.");</script>';
     } else {
-        echo '<script>console.log("Funciono");
-        alert("Tarea no añadida.");
-        </script>';
+        $msg_error = "Error al añadir la tarea";
     }
 }
 
@@ -58,7 +55,6 @@ if (isset($_POST['btn_añadir'])) {
 <body>
     <?php include 'dist/php/menu.php'; ?>
     <main>
-        <?php print_r($_SESSION['id']) ?>
         <div id="cabecera">
             <h3>Nueva tarea</h3>
         </div>
@@ -68,7 +64,7 @@ if (isset($_POST['btn_añadir'])) {
                     <div><label>Asignatura</label></div>
                     <div>
                         <select id="asignatura" name="asignatura" required>
-                            <option selected="true" disabled="disabled">--Seleccione usa asignatura--</option>
+                            <option selected="true" value="escoge">--Seleccione usa asignatura--</option>
                             <option value="Biologia">Biologia</option>
                             <option value="Fisica y Quimica">Fisica y Quimica</option>
                             <option value="Frances">Frances</option>
@@ -97,8 +93,10 @@ if (isset($_POST['btn_añadir'])) {
 
             <div id="btn_div">
                 <button name="btn_cancelar" type="submit" id="btn_cancelar">CANCELAR</button>
-                <button name="" type="submit" id="btn_añadir">AÑADIR</button>
+                <button name="btn_añadir" type="submit" id="btn_añadir">AÑADIR</button>
             </div>
+
+            <div id="msg_error"><?php echo "$msg_error" ?></div>
 
         </form>
     </main>
