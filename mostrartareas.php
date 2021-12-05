@@ -32,6 +32,10 @@
             $consulta->execute(array(':idalumno' => $idAlumno));
 
             if ($consulta) {
+                $sql = $conn->prepare("SELECT nombre, apellidos FROM academia.alumno where id = :id;");
+                $sql->execute(array(':id' => $idAlumno));
+                $algo = $sql->fetch();
+                $nombreApellidos = $algo['nombre'] . ' ' . $algo['apellidos'];
                 while ($file = $consulta->fetch()) {
             ?>
 
@@ -39,7 +43,7 @@
                     <td><?php echo $file['asignatura']  ?></td>
                     <td><?php echo $file['descripcion']  ?></td>
                     <td><?php echo $file['estado']  ?></td>
-                    <td><?php echo $file['idalumno']  ?></td>
+                    <td><?php echo $nombreApellidos  ?></td>
                     <td><?php echo $file['archivo']  ?></td>
                     <td><?php echo $file['fechacreacion']  ?></td>
                     <td><?php echo $file['fechacorreccion']  ?></td>
