@@ -26,6 +26,7 @@
             </tr>
 
             <?php
+            $listaDeIdTareasAlumno = [];
             $idAlumno = $_SESSION['id'];
             $consulta = $conn->prepare("SELECT * FROM academia.tareas where idalumno = :idalumno;");
             $consulta->execute(array(':idalumno' => $idAlumno));
@@ -36,19 +37,22 @@
                 $algo = $sql->fetch();
                 $nombreApellidos = $algo['nombre'] . ' ' . $algo['apellidos'];
                 while ($file = $consulta->fetch()) {
+                    array_push($listaDeIdTareasAlumno, $file['id']);
+
             ?>
 
-                <tr>
-                    <td><?php echo $file['asignatura']  ?></td>
-                    <td><?php echo $file['descripcion']  ?></td>
-                    <td class="filaEstado"><?php echo $file['estado']  ?></td>
-                    <td><?php echo $file['archivo']  ?></td>
-                    <td><?php echo $file['fechacreacion']  ?></td>
-                    <td><?php echo $file['fechacorreccion']  ?></td>
-                </tr>
+                    <tr>
+                        <td><?php echo $file['asignatura']  ?></td>
+                        <td><?php echo $file['descripcion']  ?></td>
+                        <td class="filaEstado"><?php echo $file['estado']  ?></td>
+                        <td><?php echo $file['archivo']  ?></td>
+                        <td><?php echo $file['fechacreacion']  ?></td>
+                        <td><?php echo $file['fechacorreccion']  ?></td>
+                    </tr>
 
             <?php
                 }
+                $_SESSION['listaDeIdTareasAlumno'] = $listaDeIdTareasAlumno;
             }
             ?>
         </table>
