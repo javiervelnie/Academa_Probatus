@@ -23,3 +23,11 @@ td{
     font-size: 17px;
     font-weight: bold;
 }
+
+.pendiente{
+    color: rgb(226, 0, 0);
+}
+
+.corregido{
+    color: rgb(0, 177, 0);
+}

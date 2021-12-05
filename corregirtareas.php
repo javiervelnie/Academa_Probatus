@@ -41,7 +41,7 @@
                     <tr>
                         <td><?php echo $file['asignatura']  ?></td>
                         <td><?php echo $file['descripcion']  ?></td>
-                        <td><?php echo $file['estado']  ?></td>
+                        <td class="filaEstado"><?php echo $file['estado']  ?></td>
                         <td><?php echo $nombreApellidos  ?></td>
                         <td><?php echo $file['archivo']  ?></td>
                         <td><?php echo $file['fechacreacion']  ?></td>
@@ -54,6 +54,8 @@
             ?>
         </table>
     </div>
+
+    <script src="dist/js/estadotareas.js"></script>
 </body>
 
 </html>
