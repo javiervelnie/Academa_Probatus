@@ -13,7 +13,7 @@
                 <div class="divIconos"><span class="material-icons">menu_book</span></div>
                 MIS TAREAS
             </a>
-            <a href="">
+            <a href="corregirtareas.php">
                 <div class="divIconos"><span class="material-icons">edit</span></div>
                 CORREGIR TAREAS
             </a>
