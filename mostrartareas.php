@@ -18,6 +18,7 @@
     <div id="contenedortabla">
         <table>
             <tr id="titulos">
+                <td class="id-hidden">Id</td>
                 <td>Asignatura</td>
                 <td>Descripcion</td>
                 <td>Estado</td>
@@ -42,13 +43,14 @@
                     $id = $file['id'];
             ?>
 
-                    <tr>
-                        <td><button type="submit" <?php echo "id=$id" ?> class="btn-abrir-popup" name="btn-abrir-popup"><?php echo $file['asignatura']  ?></button></td>
-                        <td><?php echo $file['descripcion']  ?></td>
+                    <tr class="fila">
+                        <td class="id-hidden"><input type="text" name="id" value="<?php echo $file['id']  ?>"></td>
+                        <td class="asignatura"><button type="submit" <?php echo "id=$id" ?> class="btn-abrir-popup" name="btn-abrir-popup"><?php echo $file['asignatura']  ?></button></td>
+                        <td class="descripcion"><?php echo $file['descripcion']  ?></td>
                         <td class="filaEstado"><?php echo $file['estado']  ?></td>
-                        <td><?php echo $file['archivo']  ?></td>
-                        <td><?php echo $file['fechacreacion']  ?></td>
-                        <td><?php echo $file['fechacorreccion']  ?></td>
+                        <td class="asignatura"><?php echo $file['archivo']  ?></td>
+                        <td class="asignatura"><?php echo $file['fechacreacion']  ?></td>
+                        <td class="asignatura"><?php echo $file['fechacorreccion']  ?></td>
                     </tr>
 
             <?php
@@ -68,47 +70,7 @@
     ?>
 
     <div class="overlay" id="overlay">
-        <div class="popup" id="popup">
-            <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-            <h3>Actualizar tarea de </h3>
-            <h4>Detalles</h4>
-            <form id="principal" action="" method="POST" name="formulario">
-
-                <div class="contenedor-inputs lado-izquierdo">
-                    <table id="tabla">
-                        <tr>
-                            <td class="title">Asignatura</td>
-                            <td class="value">Lengua</td>
-                        </tr>
-                        <tr>
-                            <td class="title">Estado</td>
-                            <td class="value">Corregida</td>
-                        </tr>
-                        <tr>
-                            <td class="title">Fecha de correccion</td>
-                            <td class="value">2021-05-00</td>
-                        </tr>
-                        <tr>
-                            <td class="title">Tarea</td>
-                            <td class="value"><input type="file" name="archivo" id="archivo"></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="contenedor-inputs lado-derecho">
-                    <div>
-                        <h5 class="descripcion">Descripcion</h5>
-                        <textarea></textarea>
-                    </div>
-                </div>
-
-
-                <div class="divBotones">
-                    <button>Actualizar</button>
-                </div>
-
-            </form>
-        </div>
+        <div class="popup" id="popup"></div>
     </div>
 
     <script src="dist/js/mostrartareas.js"></script>
