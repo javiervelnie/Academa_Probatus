@@ -20,7 +20,6 @@
                 <td>Asignatura</td>
                 <td>Descripcion</td>
                 <td>Estado</td>
-                <td>Alumno</td>
                 <td>Archivo</td>
                 <td>Fecha de creacion</td>
                 <td>Fecha de correccion</td>
@@ -43,7 +42,6 @@
                     <td><?php echo $file['asignatura']  ?></td>
                     <td><?php echo $file['descripcion']  ?></td>
                     <td class="filaEstado"><?php echo $file['estado']  ?></td>
-                    <td><?php echo $nombreApellidos  ?></td>
                     <td><?php echo $file['archivo']  ?></td>
                     <td><?php echo $file['fechacreacion']  ?></td>
                     <td><?php echo $file['fechacorreccion']  ?></td>
