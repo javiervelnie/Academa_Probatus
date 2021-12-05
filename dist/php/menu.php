@@ -19,15 +19,23 @@
             </a>
         </div>
 
-        <div id="divLogout">
+        <form id="divLogout"  action="" method="POST" name="formulario">
             <a href="addtarea.php">
                 <div class="logo"><img src="img/nombreAcademia.png" alt="Imagen con el nombre de la academia"></div>
             </a>
-            <a href="login.php">
-                <div class="btn_logout"><span class="material-icons">logout</span></div>
-            </a>
+            
+            <button name="btn_salir" class="btn_salir">
+                <span class="material-icons">logout</span>
+            </button>
 
-        </div>
+        </form>
     </nav>
-    '
+    ';
+
+    include "dist/php/destruirsesion.php";
+
+    if (isset($_POST['btn_salir'])) {
+        destroySession();
+        echo '<script type="text/javascript">window.location.href="login.php";</script>';
+    }
 ?>

@@ -42,6 +42,16 @@ nav{
     padding-top: 5%;
 }
 
-.btn_logout span {
+.btn_salir{
+    background-color: #142467;
+    border: none;
+    color: white;
+    padding-top: 5%;
+    cursor: pointer;
+}
+.btn_salir:hover{
+    color: #ff970f;
+}
+.btn_salir span {
     font-size: 40px;
 }

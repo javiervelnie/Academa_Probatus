@@ -39,6 +39,7 @@ CREATE TABLE `academia`.`tareas` (
   `id` INT AUTO_INCREMENT,
   `asignatura` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(255) NOT NULL,
+  `estado` VARCHAR(255) NOT NULL,
   `idalumno` INT NOT NULL,
   `archivo` VARCHAR(100) NULL,
   `fechacreacion` VARCHAR(100) NOT NULL,

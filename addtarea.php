@@ -9,6 +9,7 @@ $msg_error = "";
 
 if (isset($_POST['btn_añadir'])) {
 
+    $estado = "Pendiente";
     $fechacorreccion = null;
 
     /* VARIABLES DEL FORMULARIO */
@@ -21,9 +22,10 @@ if (isset($_POST['btn_añadir'])) {
         $archivo = null;
     }
 
-    $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
+    $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
     $consulta->bindParam(':asignatura', $asignatura);
     $consulta->bindParam(':descripcion', $descripcion);
+    $consulta->bindParam(':estado', $estado);
     $consulta->bindParam(':idalumno', $idAlumno);
     $consulta->bindParam(':archivo', $archivo);
     $consulta->bindParam(':fechacreacion', $fechacreacion);

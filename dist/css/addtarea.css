@@ -9,9 +9,7 @@ main{
 #cabecera{
     border-bottom: 1px solid black  ;
 }
-form{
-    padding-top: 20px;
-}
+
 .campos{
     display: inline-block;
     padding-right: 10%;
