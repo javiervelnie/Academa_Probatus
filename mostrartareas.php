@@ -78,19 +78,19 @@
                     <table id="tabla">
                         <tr>
                             <td class="title">Asignatura</td>
-                            <td class="value"><input class="asignatura-value" readonly type="text"></td>
+                            <td class="value"><input class="asignatura-value inputs" readonly type="text"></td>
                         </tr>
                         <tr>
                             <td class="title">Estado</td>
-                            <td class="value estado-value filaEstado"></td>
+                            <td class="value filaEstado"><input class="estado-value inputs" type="text" readonly></td>
                         </tr>
                         <tr>
                             <td class="title">Fecha de creacion</td>
-                            <td class="value fcreacion-value"></td>
+                            <td class="value"><input class="fcreacion-value inputs" type="text" readonly></td>
                         </tr>
                         <tr>
                             <td class="title">Tarea</td>
-                            <td class="value tarea-value"><input type="file" name="archivo" id="archivo"></td>
+                            <td class="value"><input class="tarea-value" type="file" name="archivo" id="archivo"></td>
                         </tr>
                     </table>
                 </div>

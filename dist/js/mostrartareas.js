@@ -17,7 +17,6 @@ btnAbrirPopup.forEach(element => {
 		popup.classList.add('active');
 		const button = event.target;
 		const item = button.closest('.fila');
-		console.log("🚀 ~ file: mostrartareas.js ~ line 18 ~ item", item);
 		/*VALORES DEL POP-UP */
 		const itemAsignatura = document.querySelector(".asignatura-value");
 		const itemDescripcion = document.querySelector(".descripcion-value");
@@ -28,7 +27,7 @@ btnAbrirPopup.forEach(element => {
 		/*AÑADO A LOS VALORES DE LA TABLA AL POP-UP*/
 		itemAsignatura.value = item.querySelector(".btn-abrir-popup").textContent;
 		itemDescripcion.innerHTML = item.querySelector(".descripcion").textContent;
-		itemEstado.innerHTML = item.querySelector(".estado").textContent;
+		itemEstado.value = item.querySelector(".estado").textContent;
 		if(item.querySelector(".estado").textContent == "Pendiente"){
 			itemEstado.classList.add('pendiente');
 		} else {
@@ -38,7 +37,7 @@ btnAbrirPopup.forEach(element => {
 		if(item.querySelector(".archivo").textContent = null){
 			itemArchivo.innerHTML = "<input type='file'>";
 		}
-		itemFechacreacion.innerHTML = item.querySelector(".fechacreacion").textContent;
+		itemFechacreacion.value = item.querySelector(".fechacreacion").textContent;
         
 		const itemCabeceraTarea = document.querySelector('.cabeceratarea');
 		itemCabeceraTarea.innerHTML = "Actualizar tarea de " + item.querySelector(".btn-abrir-popup").textContent;

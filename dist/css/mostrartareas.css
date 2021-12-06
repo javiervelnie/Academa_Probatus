@@ -205,3 +205,27 @@ td{
 .id-hidden{
 	display: none;
 }
+
+.inputs{
+	background-color: #F8F8F8;
+	border: none;
+}
+
+.inputs:hover{
+	cursor:unset;
+}
+
+.inputs:focus {
+	border: none;
+	outline: none
+}
+
+.inputs:active {
+	border: none;
+	outline: none
+}
+
+textarea{
+	height: 100%;
+	width: 260px;
+}
