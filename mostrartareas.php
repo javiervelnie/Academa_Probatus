@@ -78,7 +78,7 @@
                     <table id="tabla">
                         <tr>
                             <td class="title">Asignatura</td>
-                            <td class="value asignatura-value"></td>
+                            <td class="value"><input class="asignatura-value" readonly type="text"></td>
                         </tr>
                         <tr>
                             <td class="title">Estado</td>

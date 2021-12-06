@@ -26,7 +26,7 @@ btnAbrirPopup.forEach(element => {
 		const itemFechacreacion = document.querySelector(".fcreacion-value");
 
 		/*AÑADO A LOS VALORES DE LA TABLA AL POP-UP*/
-		itemAsignatura.innerHTML = item.querySelector(".btn-abrir-popup").textContent;
+		itemAsignatura.value = item.querySelector(".btn-abrir-popup").textContent;
 		itemDescripcion.innerHTML = item.querySelector(".descripcion").textContent;
 		itemEstado.innerHTML = item.querySelector(".estado").textContent;
 		if(item.querySelector(".estado").textContent == "Pendiente"){
