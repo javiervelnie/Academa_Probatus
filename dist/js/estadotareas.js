@@ -7,7 +7,9 @@ function modificarColor(){
     filaEstado.forEach(element => {
         if(element.textContent == "Pendiente"){
             element.classList.add('pendiente');
-        } else {
+        } 
+        
+        if(element.textContent == "Corregido"){
             element.classList.add('corregido');
         }
     });

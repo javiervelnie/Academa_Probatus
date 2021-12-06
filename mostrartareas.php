@@ -44,13 +44,13 @@
             ?>
 
                     <tr class="fila">
-                        <td class="id-hidden"><input type="text" name="id" value="<?php echo $file['id']  ?>"></td>
-                        <td class="asignatura"><button type="submit" <?php echo "id=$id" ?> class="btn-abrir-popup" name="btn-abrir-popup"><?php echo $file['asignatura']  ?></button></td>
+                        <td class="id-hidden"><?php echo $file['id']  ?></td>
+                        <td class="asignatura"><button <?php echo "id=$id" ?> class="btn-abrir-popup" name="btn-abrir-popup"><?php echo $file['asignatura']  ?></button></td>
                         <td class="descripcion"><?php echo $file['descripcion']  ?></td>
-                        <td class="filaEstado"><?php echo $file['estado']  ?></td>
-                        <td class="asignatura"><?php echo $file['archivo']  ?></td>
-                        <td class="asignatura"><?php echo $file['fechacreacion']  ?></td>
-                        <td class="asignatura"><?php echo $file['fechacorreccion']  ?></td>
+                        <td class="estado pendiente"><?php echo $file['estado']  ?></td>
+                        <td class="archivo"><?php echo $file['archivo']  ?></td>
+                        <td class="fechacreacion"><?php echo $file['fechacreacion']  ?></td>
+                        <td class="fechacorreccion"><?php echo $file['fechacorreccion']  ?></td>
                     </tr>
 
             <?php
@@ -64,13 +64,52 @@
     <?php
 
     if (isset($_POST['btn-abrir-popup'])) {
-        
-
     }
     ?>
 
     <div class="overlay" id="overlay">
-        <div class="popup" id="popup"></div>
+        <div class="popup" id="popup">
+            <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+            <h3>Actualizar tarea de </h3>
+            <h4>Detalles</h4>
+            <form id="principal" action="" method="POST" name="formulario">
+
+                <div class="contenedor-inputs lado-izquierdo">
+                    <table id="tabla">
+                        <tr>
+                            <td class="title">Asignatura</td>
+                            <td class="value asignatura-value"></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Estado</td>
+                            <td class="value estado-value filaEstado"></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Fecha de creacion</td>
+                            <td class="value fcreacion-value"></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Tarea</td>
+                            <td class="value tarea-value"><input type="file" name="archivo" id="archivo"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="contenedor-inputs lado-derecho">
+                    <div>
+                        <h5 class="descripcion">Descripcion</h5>
+                        <textarea class="descripcion-value"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="divBotones">
+                    <button>Cancelar</button>
+                    <button>Actualizar</button>
+                </div>
+
+            </form>
+        </div>
     </div>
 
     <script src="dist/js/mostrartareas.js"></script>
