@@ -70,7 +70,7 @@
     <div class="overlay" id="overlay">
         <div class="popup" id="popup">
             <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-            <h3>Actualizar tarea de </h3>
+            <h3 class="cabeceratarea">Actualizar tarea de </h3>
             <h4>Detalles</h4>
             <form id="principal" action="" method="POST" name="formulario">
 
