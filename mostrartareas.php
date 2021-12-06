@@ -76,6 +76,10 @@
 
                 <div class="contenedor-inputs lado-izquierdo">
                     <table id="tabla">
+                        <tr class="id-hidden"> <!-- class="id-hidden" -->
+                            <td class="id-hidden">Id</td>
+                            <td class="id-hidden"><input name="id" class="id-value" type="text"></td>
+                        </tr>
                         <tr>
                             <td class="title">Asignatura</td>
                             <td class="value"><input class="asignatura-value inputs" readonly type="text"></td>
@@ -98,19 +102,53 @@
                 <div class="contenedor-inputs lado-derecho">
                     <div>
                         <h5 class="descripcion">Descripcion</h5>
-                        <textarea class="descripcion-value"></textarea>
+                        <textarea class="descripcion-value" name="descripcion"></textarea>
                     </div>
                 </div>
 
 
                 <div class="divBotones">
-                    <button>Cancelar</button>
-                    <button>Actualizar</button>
+                    <button name="btn_cancelar" type="submit" id="btn_cancelar">CANCELAR</button>
+                    <button name="bnt_actualizar" type="submit" id="btn_actualizar">ACTUALIZAR</button>
                 </div>
 
             </form>
         </div>
     </div>
+
+    <?php
+    if (isset($_POST['bnt_actualizar'])) {
+        
+        $consulta = $conn->prepare("UPDATE academia.tareas SET archivo=:archivo, descripcion=:descripcion, estado=:estado WHERE id=:id");
+
+        /* RECOGER VARIABLES DEL FORMULARIO */
+        $id = $_POST['id'];
+        $archivo = $_POST['archivo'];
+        $descripcion = $_POST['descripcion'];
+        $estado = "Pendiente";
+        
+        $consulta->bindParam(':archivo', $archivo);
+        $consulta->bindParam(':descripcion', $descripcion);
+        $consulta->bindParam(':estado', $estado);
+        $consulta->bindParam(':id', $id);
+
+        if ($consulta->execute()) {
+            echo '<script type="text/javascript">
+                        window.location.href="mostrartareas.php";
+                        alert("Tarea actualizada.");
+                    </script>';
+        } else {
+            
+            echo '
+            <script type="text/javascript">
+                        window.location.href="mostartareas.php";
+                        alert("Error al actualizar tarea.");
+                    </script>
+            Error al añadir.';
+        }
+    }
+
+    ?>
 
     <script src="dist/js/mostrartareas.js"></script>
     <script src="dist/js/estadotareas.js"></script>

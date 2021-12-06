@@ -17,7 +17,9 @@ btnAbrirPopup.forEach(element => {
 		popup.classList.add('active');
 		const button = event.target;
 		const item = button.closest('.fila');
+
 		/*VALORES DEL POP-UP */
+		const itemId = document.querySelector(".id-value");
 		const itemAsignatura = document.querySelector(".asignatura-value");
 		const itemDescripcion = document.querySelector(".descripcion-value");
 		const itemEstado = document.querySelector(".estado-value");
@@ -25,6 +27,7 @@ btnAbrirPopup.forEach(element => {
 		const itemFechacreacion = document.querySelector(".fcreacion-value");
 
 		/*AÑADO A LOS VALORES DE LA TABLA AL POP-UP*/
+		itemId.value = item.querySelector(".id-hidden").textContent;
 		itemAsignatura.value = item.querySelector(".btn-abrir-popup").textContent;
 		itemDescripcion.innerHTML = item.querySelector(".descripcion").textContent;
 		itemEstado.value = item.querySelector(".estado").textContent;
