@@ -57,41 +57,43 @@ if (isset($_POST['btn_añadir'])) {
     <?php include 'dist/php/menu.php'; ?>
     <main>
         <div id="cabecera">
-            <h3>Nueva tarea</h3>
+            <h1>Nueva tarea</h1>
         </div>
         <form id="datos" action="" method="POST" name="formulario">
-            <div class="campos">
-                <div>
-                    <div><label>Asignatura</label></div>
-                    <div>
-                        <select id="asignatura" name="asignatura" required>
-                            <option selected="true" value="escoge">--Seleccione usa asignatura--</option>
-                            <option value="Biologia">Biologia</option>
-                            <option value="Fisica y Quimica">Fisica y Quimica</option>
-                            <option value="Frances">Frances</option>
-                            <option value="Lengua">Lengua</option>
-                            <option value="Historia">Historia</option>
-                            <option value="Informatica">Informatica</option>
-                            <option value="Ingles">Ingles</option>
-                            <option value="Matematicas">Matematicas</option>
-                            <option value="Tecnologia">Tecnologia</option>
-                        </select>
+            <div id="campos">
+                <div class="campos">
+                    <div id="contenedor-asignatura">
+                        <div><label>Asignatura</label></div>
+                        <div>
+                            <select class="select-css" id="asignatura" name="asignatura" required>
+                                <option selected="true" value="escoge">--Seleccione usa asignatura--</option>
+                                <option value="Biologia">Biologia</option>
+                                <option value="Fisica y Quimica">Fisica y Quimica</option>
+                                <option value="Frances">Frances</option>
+                                <option value="Lengua">Lengua</option>
+                                <option value="Historia">Historia</option>
+                                <option value="Informatica">Informatica</option>
+                                <option value="Ingles">Ingles</option>
+                                <option value="Matematicas">Matematicas</option>
+                                <option value="Tecnologia">Tecnologia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="contenedor-tarea">
+                        <div>
+                            <div><label>Tarea</label></div>
+                            <div><input type="file" name="archivo"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <div>
-                        <div><label>Tarea</label></div>
-                        <div><input type="file" name="archivo"></div>
-                    </div>
+                <div class="campos">
+                    <div><label>Decripcion</label></div>
+                    <div><textarea required name="descripcion"></textarea></div>
                 </div>
             </div>
-
-            <div class="campos">
-                <div><label>Decripcion</label></div>
-                <div><textarea required name="descripcion"></textarea></div>
-            </div>
-
+            
             <div id="btn_div">
                 <button name="btn_cancelar" type="submit" id="btn_cancelar">CANCELAR</button>
                 <button name="btn_añadir" type="submit" id="btn_añadir">AÑADIR</button>
