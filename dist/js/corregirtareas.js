@@ -19,24 +19,26 @@ btnAbrirPopup.forEach(element => {
 		const itemArchivo = document.querySelector(".tarea-value");
 		const itemFechacreacion = document.querySelector(".fcreacion-value");
 
+        const itemFechacorreccion = document.querySelector('.fcorreccion-value');
+        const itemAlumno = document.querySelector(".alumno-value");
+
 		/*AÑADO A LOS VALORES DE LA TABLA AL POP-UP*/
 		itemId.value = item.querySelector(".id-hidden").textContent;
 		itemAsignatura.value = item.querySelector(".btn-abrir-popup").textContent;
-		itemDescripcion.innerHTML = item.querySelector(".descripcion").textContent;
+		itemDescripcion.value = item.querySelector(".descripcion").textContent;
 		itemEstado.value = item.querySelector(".estado").textContent;
+        itemFechacreacion.value = item.querySelector(".fechacreacion").textContent;
+        itemFechacorreccion.value = item.querySelector(".fechacorreccion").textContent;
+        itemAlumno.value = item.querySelector(".alumno").textContent;
+		const itemCabeceraTarea = document.querySelector('.cabeceratarea');
+		itemCabeceraTarea.innerHTML = "Actualizar tarea de " + item.querySelector(".btn-abrir-popup").textContent;
 		if(item.querySelector(".estado").textContent == "Pendiente"){
 			itemEstado.classList.add('pendiente');
 		} else {
 			itemEstado.classList.add('corregido');
 		}
+		itemArchivo.value = item.querySelector(".archivo").textContent;
 		
-		if(item.querySelector(".archivo").textContent = null){
-			itemArchivo.innerHTML = "<input type='file'>";
-		}
-		itemFechacreacion.value = item.querySelector(".fechacreacion").textContent;
-        
-		const itemCabeceraTarea = document.querySelector('.cabeceratarea');
-		itemCabeceraTarea.innerHTML = "Actualizar tarea de " + item.querySelector(".btn-abrir-popup").textContent;
 	});
 });
 

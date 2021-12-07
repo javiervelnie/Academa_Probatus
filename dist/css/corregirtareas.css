@@ -32,3 +32,223 @@ td{
 .corregido{
     color: rgb(0, 177, 0);
 }
+
+
+
+/* ------------------------- */
+/* POPUP */
+/* ------------------------- */
+
+.overlay {
+	background: rgba(0,0,0,.3);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	visibility: hidden;
+}
+
+.overlay.active {
+	visibility: visible;
+}
+
+.popup {
+	background: #F8F8F8;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	font-family: 'Montserrat', sans-serif;
+	padding: 20px;
+	text-align: center;
+	width: 80%;
+	height: 70%;
+	transition: .3s ease all;
+	transform: scale(0.7);
+	opacity: 0;
+}
+
+.popup .btn-cerrar-popup {
+	font-size: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+}
+
+.popup .btn-cerrar-popup:hover {
+	color: #000;
+}
+
+.popup h3 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	opacity: 0;
+}
+
+.popup h4 {
+	font-size: 26px;
+	font-weight: 300;
+	margin-bottom: 40px;
+	opacity: 0;
+}
+
+.popup form .contenedor-inputs {
+	opacity: 0;
+}
+
+.popup form .contenedor-inputs button {
+	width: 100%;
+	margin-bottom: 20px;
+	height: 52px;
+	font-size: 18px;
+	line-height: 52px;
+	text-align: center;
+	border: 1px solid #BBBBBB;
+}
+
+#principal{
+	display: block;
+}
+
+.contenedor-inputs{
+	display: inline-flex;
+}
+
+
+
+.bloque{
+	display: block;
+}
+
+.tabla{
+	border: none;
+}
+.tabla  td{
+	border: none;
+}
+
+.title{
+	font-weight: bold;
+	text-align: right;
+	
+}
+.descripcion{
+	font-size:  15px;
+	text-align: left;
+}
+.value{
+	text-align: left;
+}
+
+/* ------------------------- */
+/* ANIMACIONES */
+/* ------------------------- */
+.popup.active {	transform: scale(1); opacity: 1; }
+.popup.active h3 { animation: entradaTitulo .8s ease .5s forwards; }
+.popup.active h4 { animation: entradaSubtitulo .8s ease .5s forwards; }
+.popup.active .contenedor-inputs { animation: entradaInputs 1s linear 1s forwards; }
+.divBotones { animation: entradaBotones 1.5s linear 1.5s forwards; }
+
+@keyframes entradaTitulo {
+	from {
+		opacity: 0;
+		transform: translateY(-25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaSubtitulo {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes entradaInputs {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes entradaBotones {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+
+.id-hidden{
+	display: none;
+}
+
+.inputs{
+	background-color: #F8F8F8;
+	border: none;
+}
+
+.inputs:hover{
+	cursor:unset;
+}
+
+.inputs:focus {
+	border: none;
+	outline: none
+}
+
+.inputs:active {
+	border: none;
+	outline: none
+}
+
+textarea{
+	height: 100%;
+	width: 260px;
+}
+
+.btn-abrir-popup{
+	background-color: white;
+	border: none;
+	color: rgb(21, 21, 173);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+
+/* ESTILOS DE BOTONES */
+.divBotones{
+	padding-top: 20px;
+	text-align: right;
+	margin-right: 15%;
+	transition: .3s ease all;
+	opacity: 0;
+}
+
+#btn_cancelar {
+	background-color: white;
+	color: #416b88;
+	border-radius: 10px;
+	border: 1px solid #416b88;
+	padding: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+#btn_actualizar{
+	background-color: #416b88;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #416b88;
+	padding: 10px;
+	cursor: pointer;
+}

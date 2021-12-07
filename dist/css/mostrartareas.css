@@ -8,17 +8,18 @@ body{
 }
 
 table{
-    border: 1px solid black;
+    border: collapse;
     margin-left: auto;
     margin-right: auto;
     font-size: 15px;
     width: 90%;
 }
 
-td{
-    border: 1px solid black;
+table td{
+    border: 2px solid black;
     padding: 10px 40px 10px 10px;
 }
+
 
 #titulos{
     font-size: 17px;
@@ -144,26 +145,6 @@ td{
 	text-align: left;
 }
 
-
-
-.popup form .btn-submit {
-	padding: 0 20px;
-	height: 40px;
-	line-height: 40px;
-	border: none;
-	color: #fff;
-	background: #5E7DE3;
-	border-radius: 3px;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	cursor: pointer;
-	transition: .3s ease all;
-}
-
-.popup form .btn-submit:hover {
-	background: rgba(94,125,227, .9);
-}
-
 /* ------------------------- */
 /* ANIMACIONES */
 /* ------------------------- */
@@ -171,6 +152,7 @@ td{
 .popup.active h3 { animation: entradaTitulo .8s ease .5s forwards; }
 .popup.active h4 { animation: entradaSubtitulo .8s ease .5s forwards; }
 .popup.active .contenedor-inputs { animation: entradaInputs 1s linear 1s forwards; }
+.divBotones { animation: entradaBotones 1.5s linear 1.5s forwards; }
 
 @keyframes entradaTitulo {
 	from {
@@ -197,6 +179,11 @@ td{
 }
 
 @keyframes entradaInputs {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes entradaBotones {
 	from { opacity: 0; }
 	to { opacity: 1; }
 }
@@ -228,4 +215,40 @@ td{
 textarea{
 	height: 100%;
 	width: 260px;
+}
+
+.btn-abrir-popup{
+	background-color: white;
+	border: none;
+	color: rgb(21, 21, 173);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+
+/* ESTILOS DE BOTONES */
+.divBotones{
+	padding-top: 20px;
+	text-align: right;
+	margin-right: 15%;
+	transition: .3s ease all;
+	opacity: 0;
+}
+
+#btn_cancelar {
+	background-color: white;
+	color: #416b88;
+	border-radius: 10px;
+	border: 1px solid #416b88;
+	padding: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+#btn_actualizar{
+	background-color: #416b88;
+	color: white;
+	border-radius: 10px;
+	border: 1px solid #416b88;
+	padding: 10px;
+	cursor: pointer;
 }

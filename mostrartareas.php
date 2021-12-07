@@ -55,7 +55,6 @@
 
             <?php
                 }
-                $_SESSION['listaDeIdTareasAlumno'] = $listaDeIdTareasAlumno;
             }
             ?>
         </table>
@@ -86,7 +85,7 @@
                         </tr>
                         <tr>
                             <td class="title">Estado</td>
-                            <td class="value filaEstado"><input class="estado-value inputs" type="text" readonly></td>
+                            <td class="value estado"><input class="estado-value inputs" type="text" readonly></td>
                         </tr>
                         <tr>
                             <td class="title">Fecha de creacion</td>
@@ -143,8 +142,7 @@
             <script type="text/javascript">
                         window.location.href="mostartareas.php";
                         alert("Error al actualizar tarea.");
-                    </script>
-            Error al añadir.';
+                    </script>';
         }
     }
 
