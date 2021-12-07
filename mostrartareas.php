@@ -15,6 +15,31 @@
 <body>
     <?php include 'dist/php/menu.php'; ?>
 
+    <div id="filtros">
+        <div class="contenedor-filtro">
+            <select class="select-css" id="asignatura" name="asignatura">
+                <option selected="true" value="escoge">--Filtrar por asignatura--</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Fisica y Quimica">Fisica y Quimica</option>
+                <option value="Frances">Frances</option>
+                <option value="Lengua">Lengua</option>
+                <option value="Historia">Historia</option>
+                <option value="Informatica">Informatica</option>
+                <option value="Ingles">Ingles</option>
+                <option value="Matematicas">Matematicas</option>
+                <option value="Tecnologia">Tecnologia</option>
+            </select>
+        </div>
+
+        <div class="contenedor-filtro">
+                <select class="select-css" id="estado" name="estado">
+                    <option selected="true" value="escoge">--Filtrar por estado--</option>
+                    <option value="Biologia">Pendiente</option>
+                    <option value="Fisica y Quimica">Corregida</option>
+                </select>
+        </div>
+    </div>
+
     <div id="contenedortabla">
         <table>
             <tr id="titulos">
@@ -75,7 +100,8 @@
 
                 <div class="contenedor-inputs lado-izquierdo">
                     <table id="tabla">
-                        <tr class="id-hidden"> <!-- class="id-hidden" -->
+                        <tr class="id-hidden">
+                            <!-- class="id-hidden" -->
                             <td class="id-hidden">Id</td>
                             <td class="id-hidden"><input name="id" class="id-value" type="text"></td>
                         </tr>
@@ -117,7 +143,7 @@
 
     <?php
     if (isset($_POST['bnt_actualizar'])) {
-        
+
         $consulta = $conn->prepare("UPDATE academia.tareas SET archivo=:archivo, descripcion=:descripcion, estado=:estado WHERE id=:id");
 
         /* RECOGER VARIABLES DEL FORMULARIO */
@@ -125,7 +151,7 @@
         $archivo = $_POST['archivo'];
         $descripcion = $_POST['descripcion'];
         $estado = "Pendiente";
-        
+
         $consulta->bindParam(':archivo', $archivo);
         $consulta->bindParam(':descripcion', $descripcion);
         $consulta->bindParam(':estado', $estado);
@@ -137,7 +163,7 @@
                         alert("Tarea actualizada.");
                     </script>';
         } else {
-            
+
             echo '
             <script type="text/javascript">
                         window.location.href="mostartareas.php";
