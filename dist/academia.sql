@@ -14,8 +14,8 @@ CREATE TABLE `academia`.`alumno` (
   UNIQUE INDEX `dni_UNIQUE` (`dni` ASC) VISIBLE)
 COMMENT = 'Tabla para los usuarios alumnos';
 
-INSERT INTO `academia`.`alumno` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12508425J', 'Javier', 'Velazquez Nieto', 'javiervnieto99@probatus.com', 'contraseña1', 'contraseña1');
-INSERT INTO `academia`.`alumno` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12453204S', 'Evaristo', 'Perez Saez', 'evas@probatus.com', 'admin', 'admin');
+INSERT INTO `academia`.`alumno` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12508425J', 'Javier', 'Velazquez Nieto', 'javiervnieto99@gmail.com', 'contraseña1', 'contraseña1');
+INSERT INTO `academia`.`alumno` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12453204S', 'Emilio', 'Lopez Lage', 'emiliolop1@hotmail.com', 'contraseña1', 'contraseña1');
 
 
 /* TABLA PROFESORES */
@@ -30,8 +30,8 @@ CREATE TABLE `academia`.`profesor` (
   UNIQUE INDEX `dni_UNIQUE` (`dni` ASC) VISIBLE)
 COMMENT = 'Tabla para los usuarios profesores';
 
-INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12457831K', 'Ana', 'Lopez Sanz', 'analop@hotmail.com', 'contraseña1', 'contraseña1');
-INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12956843P', 'Miguel', 'Nieto Noval', 'miguelnn@gmail.com', 'contraseña1', 'contraseña1');
+INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12457831K', 'Ana', 'Lopez Sanz', 'analop@probatus.com', 'contraseña1', 'contraseña1');
+INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12453204S', 'Evaristo', 'Perez Saez', 'evas@probatus.com', 'admin', 'admin');
 
 
 /* TABLA TAREAS */
