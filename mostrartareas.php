@@ -47,9 +47,9 @@
                 <td>Asignatura</td>
                 <td>Descripcion</td>
                 <td>Estado</td>
-                <td>Archivo</td>
-                <td>Fecha de creacion</td>
-                <td>Fecha de correccion</td>
+                <td class="archivo">Archivo</td>
+                <td class="fechacreacion">Fecha de creacion</td>
+                <td class="fechacorreccion">Fecha de correccion</td>
             </tr>
 
             <?php

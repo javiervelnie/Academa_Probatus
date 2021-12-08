@@ -304,3 +304,15 @@ textarea{
   .select-css option {
     font-weight:normal;
   }
+
+  @media (max-width: 620px) {
+    .archivo{
+		visibility: hidden;
+	}
+	.fechacreacion{
+		visibility: hidden;
+	}
+	.fechacorreccion{
+		visibility: hidden;
+	}
+}

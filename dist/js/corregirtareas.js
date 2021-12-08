@@ -31,7 +31,7 @@ btnAbrirPopup.forEach(element => {
         itemFechacorreccion.value = item.querySelector(".fechacorreccion").textContent;
         itemAlumno.value = item.querySelector(".alumno").textContent;
 		const itemCabeceraTarea = document.querySelector('.cabeceratarea');
-		itemCabeceraTarea.innerHTML = "Actualizar tarea de " + item.querySelector(".btn-abrir-popup").textContent;
+		itemCabeceraTarea.innerHTML = "Corregir tarea de " + item.querySelector(".btn-abrir-popup").textContent;
 		if(item.querySelector(".estado").textContent == "Pendiente"){
 			itemEstado.classList.add('pendiente');
 		} else {
