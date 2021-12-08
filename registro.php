@@ -91,8 +91,8 @@ if (isset($_POST['btn_crear'])) {
 
 <body>
     <div id="cabecera">
-        <img src="img/nombreAcademia.png">
-        <img src="img/logoAcademia.png">
+        <img id="img_titulo" src="img/nombreAcademia.png">
+        <img id="img_logo" src="img/logoAcademia.png">
     </div>
     <div id="principal">
         <div id="titulo">

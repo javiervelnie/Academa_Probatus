@@ -56,7 +56,7 @@ if (isset($_POST['login'])) {
 
 <body>
     <form id="principal" action="" method="POST" name="formulario">
-        <div id="titulo"><img src="img/nombreAcademia.png"><img src="img/logoAcademia.png"></div>
+        <div id="titulo"><img id="img_nombre"src="img/nombreAcademia.png"><img id="img_libro" src="img/logoAcademia.png"></div>
         <div id="datos">
             <p>Email</p><input type="text" name="email" required="true">
             <p>Contraseña</p><input type="password" name="password1" required="true">
