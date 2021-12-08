@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <?php include 'dist/php/menu.php'; ?>
+    <?php include 'dist/php/menu_a.php'; ?>
 
     <div id="filtros">
         <div class="contenedor-filtro">

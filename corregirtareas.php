@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <?php include 'dist/php/menu.php'; ?>
+    <?php include 'dist/php/menu_p.php'; ?>
 
     <div id="contenedortabla">
         <table>

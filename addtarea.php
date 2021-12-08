@@ -54,7 +54,7 @@ if (isset($_POST['btn_añadir'])) {
 </head>
 
 <body>
-    <?php include 'dist/php/menu.php'; ?>
+    <?php include 'dist/php/menu_a.php'; ?>
     <main>
         <div id="cabecera">
             <h1>Nueva tarea</h1>

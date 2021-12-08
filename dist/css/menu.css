@@ -1,10 +1,11 @@
-nav{
+nav {
     display: flex;
     margin: 0;
     background-color: #142467;
     font-family: Arial, Helvetica, sans-serif;
 }
-.opcionMenu{
+
+.opcionMenu {
     display: flex;
     text-align: center;
     color: white;
@@ -14,7 +15,7 @@ nav{
 .opcionMenu a {
     padding: 5px 30px 10px 10px;
     text-align: center;
-    display: block; /* Para ponerlo en horizontal hay que poner esta y esta de abajo */
+    display: block;
     float: left;
     text-decoration: none;
     padding: 14px 16px;
@@ -22,17 +23,16 @@ nav{
     font-size: 20px;
 }
 
-.opcionMenu a:hover{
+.opcionMenu a:hover {
     background-color: #2c3764;
 }
 
 #divLogout {
     display: flex;
-    float: right;
     height: min-content;
 }
 
-.logo img{
+.logo img {
     height: 40px;
 }
 
@@ -43,16 +43,30 @@ nav{
     padding-top: 5%;
 }
 
-.btn_salir{
+.btn_salir {
     background-color: #142467;
     border: none;
     color: white;
     padding-top: 5%;
     cursor: pointer;
 }
-.btn_salir:hover{
+
+.btn_salir:hover {
     color: #ff970f;
 }
+
 .btn_salir span {
     font-size: 40px;
+}
+
+
+@media (max-width: 650px) {
+    .opcionMenu {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: #142467
+    }
 }
