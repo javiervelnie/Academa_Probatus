@@ -43,7 +43,7 @@ if (isset($_POST['btn_crear'])) {
     if ($nombre_check && $apellidos_check && $email_check && $dni_check && $password_check && $password_equal) {
         if ($consulta->execute()) {
             echo '<script type="text/javascript">
-                        window.location.href="login.php";
+                        window.location.href="index.php";
                         alert("Usuario creado con exito");
                     </script>';
         } else {

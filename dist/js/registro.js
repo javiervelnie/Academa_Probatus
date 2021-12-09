@@ -5,7 +5,7 @@ cancelButton.addEventListener("click", redirigirToLogin);
 document.querySelector("body").addEventListener("load", corregirErrorVisual());
 
 function redirigirToLogin() {
-    window.location.href = "login.php";
+    window.location.href = "index.php";
 }
 
 function corregirErrorVisual() {

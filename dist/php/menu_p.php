@@ -28,6 +28,6 @@
 
     if (isset($_POST['btn_salir'])) {
         destroySession();
-        echo '<script type="text/javascript">window.location.href="login.php";</script>';
+        echo '<script type="text/javascript">window.location.href="index.php";</script>';
     }
 ?>
