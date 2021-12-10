@@ -19,7 +19,7 @@ if (isset($_POST['btn_añadir'])) {
 
     $nombre_final = "";
     /****************************************** */
-    if ($_FILES['archivo'] != null) {
+    if ($_FILES['archivo']['name'] != null) {
         $nombre_base = $_FILES["archivo"]["name"];
         $nombre_final = str_replace(" ", "-", $nombre_base);
         $directorio = "uploads/";
