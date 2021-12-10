@@ -51,4 +51,5 @@ CREATE TABLE `academia`.`tareas` (
     FOREIGN KEY (`idalumno`)
     REFERENCES `academia`.`alumno` (`id`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE);
+    ON UPDATE CASCADE
+    );

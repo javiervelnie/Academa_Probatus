@@ -11,32 +11,52 @@ if (isset($_POST['btn_añadir'])) {
 
     $estado = "Pendiente";
     $fechacorreccion = null;
-
+    $nulo = null;
     /* VARIABLES DEL FORMULARIO */
     $asignatura = $_POST['asignatura'];
-    $archivo = $_POST['archivo'];
     htmlspecialchars($descripcion = $_POST['descripcion']);
     $idAlumno = $_SESSION['id'];
-    
 
-    if ($archivo == "") {
-        $archivo = null;
-    }
+    $nombre_final = "";
+    /****************************************** */
+    if ($_FILES['archivo'] != null) {
+        $nombre_base = $_FILES["archivo"]["name"];
+        $nombre_final = str_replace(" ", "-", $nombre_base);
+        $directorio = "uploads/";
+        $subir_archivo = $directorio.basename($_FILES['archivo']['name']);
 
-    $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
-    $consulta->bindParam(':asignatura', $asignatura);
-    $consulta->bindParam(':descripcion', $descripcion);
-    $consulta->bindParam(':estado', $estado);
-    $consulta->bindParam(':idalumno', $idAlumno);
-    $consulta->bindParam(':archivo', $archivo);
-    $consulta->bindParam(':fechacreacion', $fechacreacion);
-    $consulta->bindParam(':fechacorreccion', $fechacorreccion);
+        if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $subir_archivo)) {
+            $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
+            $consulta->bindParam(':asignatura', $asignatura);
+            $consulta->bindParam(':descripcion', $descripcion);
+            $consulta->bindParam(':estado', $estado);
+            $consulta->bindParam(':idalumno', $idAlumno);
+            $consulta->bindParam(':archivo', $nombre_final);
+            $consulta->bindParam(':fechacreacion', $fechacreacion);
+            $consulta->bindParam(':fechacorreccion', $fechacorreccion);
 
-    if ($consulta->execute() && $asignatura != "escoge") {
-
-        echo '<script>alert("Tarea añadida.");</script>';
+            if ($consulta->execute() && $asignatura != "escoge") {
+                echo '<script>alert("Tarea añadida.");</script>';
+            } else {
+                $msg_error = "Error al añadir la tarea";
+            }
+        }
     } else {
-        $msg_error = "Error al añadir la tarea";
+
+        $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
+        $consulta->bindParam(':asignatura', $asignatura);
+        $consulta->bindParam(':descripcion', $descripcion);
+        $consulta->bindParam(':estado', $estado);
+        $consulta->bindParam(':idalumno', $idAlumno);
+        $consulta->bindParam(':archivo', $nulo);
+        $consulta->bindParam(':fechacreacion', $fechacreacion);
+        $consulta->bindParam(':fechacorreccion', $fechacorreccion);
+
+        if ($consulta->execute() && $asignatura != "escoge") {
+            echo '<script>alert("Tarea añadida.");</script>';
+        } else {
+            $msg_error = "Error al añadir la tarea";
+        }
     }
 }
 
@@ -60,7 +80,7 @@ if (isset($_POST['btn_añadir'])) {
         <div id="cabecera">
             <h1>Nueva tarea</h1>
         </div>
-        <form id="datos" action="" method="POST" name="formulario">
+        <form id="datos" action="" method="POST" name="formulario" enctype="multipart/form-data">
             <div id="campos">
                 <div class="campos">
                     <div id="contenedor-asignatura">
@@ -94,7 +114,7 @@ if (isset($_POST['btn_añadir'])) {
                     <div><textarea required name="descripcion"></textarea></div>
                 </div>
             </div>
-            
+
             <div id="btn_div">
                 <button name="btn_cancelar" type="submit" id="btn_cancelar">CANCELAR</button>
                 <button name="btn_añadir" type="submit" id="btn_añadir">AÑADIR</button>
