@@ -149,7 +149,7 @@
         /* RECOGER VARIABLES DEL FORMULARIO */
         $id = $_POST['id'];
         $archivo = $_POST['archivo'];
-        $descripcion = $_POST['descripcion'];
+        htmlspecialchars($descripcion = $_POST['descripcion']);
         $estado = "Pendiente";
 
         $consulta->bindParam(':archivo', $archivo);

@@ -15,8 +15,9 @@ if (isset($_POST['btn_añadir'])) {
     /* VARIABLES DEL FORMULARIO */
     $asignatura = $_POST['asignatura'];
     $archivo = $_POST['archivo'];
-    $descripcion = $_POST['descripcion'];
+    htmlspecialchars($descripcion = $_POST['descripcion']);
     $idAlumno = $_SESSION['id'];
+    
 
     if ($archivo == "") {
         $archivo = null;

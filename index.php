@@ -6,8 +6,8 @@ $msg_error_login = "";
 
 if (isset($_POST['login'])) {
 
-    $email = $_POST['email'];
-    $password1 = $_POST['password1'];
+    htmlspecialchars($email = $_POST['email']);
+    htmlspecialchars($password1 = $_POST['password1']);
 
     $email_check = preg_match("/^[a-zA-Z0-9._-]+[@probatus.com]+$/", $email);
 

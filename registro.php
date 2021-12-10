@@ -15,12 +15,12 @@ if (isset($_POST['btn_crear'])) {
 
 
     /* RECOGER VARIABLES DEL FORMULARIO */
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $email = $_POST['email'];
-    $dni = $_POST['dni'];
-    $password1 = $_POST['password1'];
-    $password2 = $_POST['password2'];
+    htmlspecialchars($nombre = $_POST['nombre']);
+    htmlspecialchars($apellidos = $_POST['apellidos']);
+    htmlspecialchars($email = $_POST['email']);
+    htmlspecialchars($dni = $_POST['dni']);
+    htmlspecialchars($password1 = $_POST['password1']);
+    htmlspecialchars($password2 = $_POST['password2']);
 
     /* EXPRESIONES REGULARES */
     $nombre_check = preg_match("/^[A-Z]{1}[a-z]+|[A-Z]{1}[a-z]+\s[A-Z]{1}[a-z]+$/", $nombre);
