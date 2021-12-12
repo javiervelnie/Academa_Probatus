@@ -34,6 +34,22 @@ INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `passw
 INSERT INTO `academia`.`profesor` (`dni`, `nombre`, `apellidos`, `email`, `password1`, `password2`) VALUES ('12453204S', 'Evaristo', 'Perez Saez', 'evas@probatus.com', 'admin', 'admin');
 
 
+/* TABLA DE UPLOADS*/
+CREATE TABLE `academia`.`archivos` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `tmpname` VARCHAR(250) NOT NULL,
+  `tipo` VARCHAR(255) NOT NULL,
+  `size` INT NOT NULL,
+  `idalumno` INT NOT NULL,
+  CONSTRAINT `FOREIGN_ID_ALUMNO_UPLOADS`
+    FOREIGN KEY (`idalumno`)
+    REFERENCES `academia`.`alumno` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+
 /* TABLA TAREAS */
 CREATE TABLE `academia`.`tareas` (
   `id` INT AUTO_INCREMENT,
@@ -41,7 +57,7 @@ CREATE TABLE `academia`.`tareas` (
   `descripcion` VARCHAR(255) NOT NULL,
   `estado` VARCHAR(255) NOT NULL,
   `idalumno` INT NOT NULL,
-  `archivo` VARCHAR(100) NULL,
+  `idarchivo` INT,
   `fechacreacion` VARCHAR(100) NOT NULL,
   `fechacorreccion` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
@@ -50,6 +66,8 @@ CREATE TABLE `academia`.`tareas` (
   CONSTRAINT `FOREIGN_ID_ALUMNO`
     FOREIGN KEY (`idalumno`)
     REFERENCES `academia`.`alumno` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-    );
+    ON DELETE CASCADE,
+  CONSTRAINT `FOREIGN_ID_ARCHIVO`
+    FOREIGN KEY (`idarchivo`)
+    REFERENCES `academia`.`archivos` (`id`)
+);

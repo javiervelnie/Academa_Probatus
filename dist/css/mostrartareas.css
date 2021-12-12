@@ -16,7 +16,6 @@ table{
 }
 
 table td{
-    border: 2px solid black;
     padding: 10px 40px 10px 10px;
 }
 
@@ -307,12 +306,22 @@ textarea{
 
   @media (max-width: 620px) {
     .archivo{
-		visibility: hidden;
+		display: none;
 	}
 	.fechacreacion{
-		visibility: hidden;
+		display: none;
 	}
 	.fechacorreccion{
-		visibility: hidden;
+		display: none;
+	}
+	.popup{
+		width: 60%;
+		height: 60%;
+	}
+	.contenedor-inputs{
+		display: block;
+	}
+	textarea{
+		height: 15%;
 	}
 }

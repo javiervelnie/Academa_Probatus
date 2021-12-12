@@ -6,6 +6,7 @@ date_default_timezone_set('Europe/Madrid');
 $fechacreacion = date("Y-m-d");
 
 $msg_error = "";
+$msg_tipo_archivo = "";
 
 if (isset($_POST['btn_añadir'])) {
 
@@ -21,41 +22,70 @@ if (isset($_POST['btn_añadir'])) {
     /****************************************** */
     if ($_FILES['archivo']['name'] != null) {
         $nombre_base = $_FILES["archivo"]["name"];
-        $nombre_final = str_replace(" ", "-", $nombre_base);
+        $nombre_final = $idAlumno. str_replace(" ", "-", $nombre_base);
         $directorio = "uploads/";
-        $subir_archivo = $directorio.basename($_FILES['archivo']['name']);
+        $subir_archivo = $directorio . basename($nombre_final);
 
-        if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $subir_archivo)) {
-            $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
-            $consulta->bindParam(':asignatura', $asignatura);
-            $consulta->bindParam(':descripcion', $descripcion);
-            $consulta->bindParam(':estado', $estado);
-            $consulta->bindParam(':idalumno', $idAlumno);
-            $consulta->bindParam(':archivo', $nombre_final);
-            $consulta->bindParam(':fechacreacion', $fechacreacion);
-            $consulta->bindParam(':fechacorreccion', $fechacorreccion);
+        $tmpname = $_FILES["archivo"]["tmp_name"];
+        $rutaCompleta = $directorio . basename($tmpname);
+        $tipo = $_FILES["archivo"]["type"];
+        $size = $_FILES["archivo"]["size"] / 1024;
 
-            if ($consulta->execute() && $asignatura != "escoge") {
-                echo '<script>alert("Tarea añadida.");</script>';
-            } else {
-                $msg_error = "Error al añadir la tarea";
+        if ($tipo == "application/pdf") {
+            if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $subir_archivo)) {
+
+                $idArchivo;
+
+                /* CONSULTA AÑADIR ARCHIVO */
+                $consulta2 = $conn->prepare("INSERT INTO archivos(nombre,tmpname,tipo,size,idalumno) VALUES (:nombre,:tmpname,:tipo,:size,:idalumno)");
+                $consulta2->bindParam(':nombre', $nombre_final);
+                $consulta2->bindParam(':tmpname', $tmpname);
+                $consulta2->bindParam(':tipo', $tipo);
+                $consulta2->bindParam(':size', $size);
+                $consulta2->bindParam(':idalumno', $idAlumno);
+
+                if ($consulta2->execute()) {
+                    $sql = $conn->prepare("SELECT * FROM academia.archivos WHERE tmpname=:tmpname");
+                    $sql->execute(array(':tmpname' => $tmpname));
+                    $file = $sql->fetch();
+                    $idArchivo = $file['id'];
+
+                    $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,idarchivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:idarchivo,:fechacreacion,:fechacorreccion)");
+                    $consulta->bindParam(':asignatura', $asignatura);
+                    $consulta->bindParam(':descripcion', $descripcion);
+                    $consulta->bindParam(':estado', $estado);
+                    $consulta->bindParam(':idalumno', $idAlumno);
+                    $consulta->bindParam(':idarchivo', $idArchivo);
+                    $consulta->bindParam(':fechacreacion', $fechacreacion);
+                    $consulta->bindParam(':fechacorreccion', $fechacorreccion);
+
+                    if ($asignatura != "escoge" && $consulta->execute()) {
+                        echo '<script>alert("Tarea añadida.");</script>';
+                    } else {
+                        $msg_error = "Error al añadir la tarea. ";
+                    }
+                } else {
+                    $msg_error = "Error al añadir la tarea. ";
+                }
             }
+        } else {
+            $msg_tipo_archivo = "Error. Solo archivos .pdf";
         }
     } else {
 
-        $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,archivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:archivo,:fechacreacion,:fechacorreccion)");
+        $consulta = $conn->prepare("INSERT INTO tareas(asignatura,descripcion,estado,idalumno,idarchivo,fechacreacion,fechacorreccion) VALUES (:asignatura,:descripcion,:estado,:idalumno,:idarchivo,:fechacreacion,:fechacorreccion)");
         $consulta->bindParam(':asignatura', $asignatura);
         $consulta->bindParam(':descripcion', $descripcion);
         $consulta->bindParam(':estado', $estado);
         $consulta->bindParam(':idalumno', $idAlumno);
-        $consulta->bindParam(':archivo', $nulo);
+        $consulta->bindParam(':idarchivo', $nulo);
         $consulta->bindParam(':fechacreacion', $fechacreacion);
         $consulta->bindParam(':fechacorreccion', $fechacorreccion);
 
-        if ($consulta->execute() && $asignatura != "escoge") {
+        if ($asignatura != "escoge" && $consulta->execute()) {
             echo '<script>alert("Tarea añadida.");</script>';
         } else {
-            $msg_error = "Error al añadir la tarea";
+            $msg_error = "Error al añadir la tarea. ";
         }
     }
 }
@@ -120,7 +150,7 @@ if (isset($_POST['btn_añadir'])) {
                 <button name="btn_añadir" type="submit" id="btn_añadir">AÑADIR</button>
             </div>
 
-            <div id="msg_error"><?php echo "$msg_error" ?></div>
+            <div id="msg_error"><?php echo "$msg_error $msg_tipo_archivo" ?></div>
 
         </form>
     </main>

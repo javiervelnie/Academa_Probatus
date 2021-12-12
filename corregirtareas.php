@@ -33,10 +33,24 @@
 
             if ($consulta) {
                 while ($file = $consulta->fetch()) {
-                    $sql = $conn->prepare("SELECT nombre, apellidos FROM academia.alumno where id = :id;");
+                    //Para poner el nombre y apellidos en su correspondiente columna
+                    $sql = $conn->prepare("SELECT * FROM academia.alumno where id = :id;");
                     $sql->execute(array(':id' => $file['idalumno']));
                     $algo = $sql->fetch();
                     $nombreApellidos = $algo['nombre'] . ' ' . $algo['apellidos'];
+                    //$idArchivoTareas = $algo['idarchivo'];
+
+                    //Para poner el nombre del archivo y el enlace en su correspondiente columna
+                    if ($file['idarchivo'] != null) {
+                        $consulta2 = $conn->prepare("SELECT * FROM academia.archivos WHERE id=:id");
+                        $consulta2->execute(array(':id' => $file['idarchivo']));
+                        $otra = $consulta2->fetch();
+                        $nombreConsulta = "uploads/" .$otra['nombre'];
+                        $nombreOriginal = substr($otra['nombre'], 1);
+                    } else {
+                        $nombreConsulta = "#";
+                        $nombreOriginal = "";
+                    }
             ?>
 
                     <tr class="fila">
@@ -45,7 +59,7 @@
                         <td class="descripcion"><?php echo $file['descripcion']  ?></td>
                         <td class="estado pendiente"><?php echo $file['estado']  ?></td>
                         <td class="alumno"><?php echo $nombreApellidos  ?></td>
-                        <td class="archivo"><?php echo $file['archivo']  ?></td>
+                        <td class="archivo"><a target="blank" href="<?php echo $nombreConsulta ?>"><?php echo $nombreOriginal  ?></a></td>
                         <td class="fechacreacion"><?php echo $file['fechacreacion']  ?></td>
                         <td class="fechacorreccion"><?php echo $file['fechacorreccion']  ?></td>
                     </tr>
@@ -87,7 +101,7 @@
                         </tr>
                         <tr>
                             <td class="title">Tarea</td>
-                            <td class="value"><input class="tarea-value inputs" type="text" name="archivo" id="archivo"></td>
+                            <td class="value"><input class="tarea-value inputs" type="text" readonly></td>
                         </tr>
                         <tr>
                             <td class="title">Fecha de correccion</td>
@@ -97,7 +111,7 @@
                 </div>
 
                 <div class="contenedor-inputs lado-derecho">
-                <table class="tabla">
+                    <table class="tabla">
                         <tr>
                             <td class="title">Descripcion</td>
                             <td class="value"><input class="descripcion-value inputs" readonly type="text"></td>
@@ -126,7 +140,7 @@
     <?php
     if (isset($_POST['bnt_actualizar'])) {
 
-        $msg_fecha_no_valida="";
+        $msg_fecha_no_valida = "";
 
         $consulta = $conn->prepare("UPDATE academia.tareas SET fechacorreccion=:fechacorreccion, estado=:estado WHERE id=:id");
 
@@ -135,7 +149,9 @@
         $fechacorreccion = $_POST['fechacorreccion'];
         $estado = "Corregido";
 
-        if($fechacorreccion != null){
+        $hoy = date("Y-m-d");
+
+        if ($fechacorreccion != null && ($fechacorreccion <= $hoy)) {
             $consulta->bindParam(':fechacorreccion', $fechacorreccion);
             $consulta->bindParam(':estado', $estado);
             $consulta->bindParam(':id', $id);
@@ -146,7 +162,7 @@
                             alert("Tarea corregida.");
                         </script>';
             } else {
-    
+
                 echo '
                 <script type="text/javascript">
                             alert("Error al corregir tarea.");
@@ -156,7 +172,7 @@
         } else {
             echo '
                 <script type="text/javascript">
-                    alert("Error. Escoge una fecha.");
+                    alert("Error. Indica una fecha correcta.");
                     window.location.href="corregirtareas.php";
                 </script>';
         }
