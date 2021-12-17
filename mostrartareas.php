@@ -67,7 +67,7 @@
                     array_push($listaDeIdTareasAlumno, $file['id']);
                     $id = $file['id']; //El id de cada tarea
                     $idarchivo = $file['idarchivo']; //El id de cada archivo dentro de tabla "tareas"
-                    /******* */
+                   
                     if ($idarchivo != "") {
                         $consulta2 = $conn->prepare("SELECT * FROM academia.archivos WHERE id=:id");
                         $consulta2->execute(array(':id' => $idarchivo));

@@ -29,7 +29,7 @@ if (isset($_POST['btn_añadir'])) {
         $tmpname = $_FILES["archivo"]["tmp_name"];
         $rutaCompleta = $directorio . basename($tmpname);
         $tipo = $_FILES["archivo"]["type"];
-        $size = $_FILES["archivo"]["size"] / 1024;
+        $size = $_FILES["archivo"]["size"] / 1024; //Almacena el valor en Kb
 
         if ($tipo == "application/pdf") {
             if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $subir_archivo)) {

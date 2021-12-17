@@ -38,7 +38,6 @@
                     $sql->execute(array(':id' => $file['idalumno']));
                     $algo = $sql->fetch();
                     $nombreApellidos = $algo['nombre'] . ' ' . $algo['apellidos'];
-                    //$idArchivoTareas = $algo['idarchivo'];
 
                     //Para poner el nombre del archivo y el enlace en su correspondiente columna
                     if ($file['idarchivo'] != null) {
@@ -87,7 +86,6 @@
                 <div class="contenedor-inputs lado-izquierdo">
                     <table class="tabla">
                         <tr class="id-hidden">
-                            <!-- class="id-hidden" -->
                             <td class="id-hidden">Id</td>
                             <td class="id-hidden"><input name="id" class="id-value" type="text"></td>
                         </tr>
