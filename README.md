@@ -1,2 +1,2 @@
 # Academa_Probatus
-El tfg
+Proyecto realizado como Trabajo de Fin de Grado del CFGS Desarrollo de Aplicaciones Web
